@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 using Core.Entities;
 
-namespace Entities.Concrete
+namespace Entities.DTOs
 {
-    public class Category : IEntity
+    public class ProductDetailDto : IDto
     {
-        public int CategoryId { get; set; }
+        public int ProductId { get; set; }
+        public string ProductName { get; set; }
         public string CategoryName { get; set; }
-
+        public short UnitsInStock { get; set; }
     }
 }
