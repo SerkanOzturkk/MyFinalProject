@@ -1,4 +1,5 @@
-﻿using DataAccess.Abstract;
+﻿using System.Linq.Expressions;
+using DataAccess.Abstract;
 using Entities.Concrete;
 
 namespace DataAccess.Concrete.InMemory
@@ -24,6 +25,16 @@ namespace DataAccess.Concrete.InMemory
         public List<Product> GetAll()
         {
             return _products;
+        }
+
+        public List<Product> GetAll(Expression<Func<Product, bool>> filter = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Product Get(Expression<Func<Product, bool>> filter)
+        {
+            throw new NotImplementedException();
         }
 
         public void Add(Product product)
@@ -63,5 +74,6 @@ namespace DataAccess.Concrete.InMemory
         {
             return _products.Where(p => p.CategoryId == categoryId).ToList();
         }
+
     }
 }
