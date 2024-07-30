@@ -1,4 +1,4 @@
-﻿using System;
+﻿    using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,7 +27,7 @@ namespace Business.Concrete
         {
             //İş kodları
             //Gerekli şartlar sağlanırsa return
-            if (DateTime.Now.Hour == 21)
+            if (DateTime.Now.Hour == 23)
             {
                 return new ErrorDataResult<List<Product>>(Messages.MaintenanceTime);
             }
@@ -66,6 +66,20 @@ namespace Business.Concrete
             _productDal.Add(product);
 
             return new SuccessResult(Messages.ProductAdded);
+        }
+
+        public IResult Update(Product product)
+        {
+            _productDal.Update(product);
+
+            return new SuccessResult(Messages.ProductUpdated);
+        }
+
+        public IResult Delete(Product product)
+        {
+            _productDal.Delete(product);
+
+            return new SuccessResult(Messages.ProductDeleted);
         }
     }
 }

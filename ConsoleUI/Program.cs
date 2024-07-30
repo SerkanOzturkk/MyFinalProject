@@ -1,6 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 using Business.Concrete;
+using Business.Test;
 using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
@@ -9,41 +10,47 @@ namespace ConsoleUI
 {
     class Program
     {
+        
         static void Main(string[] args)
         {
-            ProductTest();
-            //CategoryTest();
+            TestProduct testProduct = new TestProduct();
+            //ProductTest();
+            //CategoryAllTest.CategoryTest();
+            //testProduct.GetAll();
+            //testProduct.GetByID(1);
+            //testProduct.Add(new Product{CategoryId = 1,ProductName = "test1",UnitPrice = 250,UnitsInStock = 10});
+            //testProduct.Update(new Product { ProductId = 78,CategoryId = 1, ProductName = "test2", UnitPrice = 250, UnitsInStock = 10 });
+            //testProduct.Delete(new Product { ProductId = 78});
+            //testProduct.GetProductDetails();
+            //testProduct.GetByUnitPrice(1,10);
+            testProduct.GetAllByCategoryId(1);
+
+
+
         }
 
-        private static void CategoryTest()
+        public static class CategoryAllTest
         {
-            CategoryManager categoryManager = new CategoryManager(new EfCategoryDal());
-            foreach (var category in categoryManager.GetAll())
+            public static void CategoryTest()
             {
-                Console.WriteLine(category.CategoryName);
-            }
-        }
+                CategoryManager categoryManager = new CategoryManager(new EfCategoryDal());
 
-        private static void ProductTest()
-        {
-            ProductManager productManager = new ProductManager(new EfProductDal());
+                var result = categoryManager.GetAll();
 
-            var result = productManager.GetProductDetails();
-
-            if (result.Success == true)
-            {
-                foreach (var product in result.Data)
+                if (result.Success == true)
                 {
-                    Console.WriteLine(product.ProductName + "/" + product.CategoryName);
+                    foreach (var category in result.Data)
+                    {
+                        Console.WriteLine(category.CategoryId + "/" + category.CategoryName);
+                    }
+                }
+                else
+                {
+                    Console.WriteLine(result.Message);
                 }
             }
-            else
-            {
-                Console.WriteLine(result.Message);
-            }
-
-            
         }
+
     }
 }
 

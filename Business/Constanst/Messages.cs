@@ -13,5 +13,8 @@ namespace Business.Constanst
         public static string ProductsListed = "Ürünler listelendi";
         public static string ProductAdded = "Ürün Eklendi";
         public static string ProductNameInvalid = "Ürün ismi geçersiz";
+        public static string ProductUpdated = "Ürün güncellendi";
+        public static string ProductDeleted = "Ürün silindi";
+
     }
 }
