@@ -12,7 +12,7 @@ namespace Business.Test
 {
     public  class TestProduct : ITest
     {
-        ProductManager productManager = new ProductManager(new EfProductDal());
+        ProductManager productManager = new ProductManager(new EfProductDal(),new CategoryManager(new EfCategoryDal()));
         public void GetAll()
         {
             var result = productManager.GetAll();
