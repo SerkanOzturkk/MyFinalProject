@@ -65,6 +65,7 @@ namespace Business.Concrete
             return new SuccessDataResult<Product>(_productDal.Get(p => p.ProductId == productId));
         }
 
+        //[SecuredOperation("product.add")]
         [ValidationAspect(typeof(ProductValidator))]
         public IResult Add(Product product)
         {
@@ -76,7 +77,7 @@ namespace Business.Concrete
                 return result;
             }
             _productDal.Add(product);
-
+            
 
             return new SuccessResult(Messages.ProductAdded);
         }
